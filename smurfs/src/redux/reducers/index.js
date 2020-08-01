@@ -2,7 +2,8 @@ import { START_GET_SMURFS, GET_SMURFS_SUCCESS } from "../actions"
 
 const initialState = {
   isFetching: false,
-  smurfs: []
+  smurfs: [],
+  error: ''
 }
 
 export const SmurfReducer = (state = initialState, action) => {

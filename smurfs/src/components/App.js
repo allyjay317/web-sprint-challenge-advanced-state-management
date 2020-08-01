@@ -5,6 +5,7 @@ import { getSmurfs } from '../redux/actions'
 
 import SmurfCollector from "./SmurfCollector";
 import { Route, withRouter } from "react-router";
+import AddForm from "./AddForm";
 class App extends Component {
 
   componentDidMount() {
@@ -21,21 +22,21 @@ class App extends Component {
           </h1>
           <button onClick={e => {
             e.preventDefault()
-            this.props.history
+            this.props.history.push('/add')
           }}>Add a Smurf</button>
         </nav>
-        <Route exact path='/'>
-          <div style={{ marginTop: '100px' }}>
+        <div style={{ marginTop: '100px' }}>
+          <Route exact path='/'>
             <SmurfCollector />
-          </div>
-        </Route>
-        <Route path='/add'>
+          </Route>
+          <Route path='/add'>
+            <AddForm />
+          </Route>
+        </div>
 
-        </Route>
-
-      </div>
+      </div >
     );
   }
 }
 
-export default withRouter(App);
+export default connect(() => { }, { getSmurfs })(withRouter(App));
