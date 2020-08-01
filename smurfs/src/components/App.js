@@ -17,7 +17,10 @@ class App extends Component {
     return (
       <div className="App">
         <nav style={{ width: '100%', backgroundColor: '#62cdfd', position: "fixed", top: 0, display: 'flex', justifyContent: 'space-evenly' }}>
-          <h1>
+          <h1 onClick={e => {
+            e.preventDefault()
+            this.props.history.push('/')
+          }}>
             Smurfs!
           </h1>
           <button onClick={e => {

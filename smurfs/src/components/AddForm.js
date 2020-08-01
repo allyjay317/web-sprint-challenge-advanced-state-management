@@ -1,14 +1,14 @@
-import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState, useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { submitNewSmurf } from '../redux/actions'
 import { useHistory } from 'react-router'
 
 const AddForm = () => {
 
   const [newSmurf, setNewSmurf] = useState({ name: '', age: 0, height: '0cm' })
+  const [submitted, setSubmitted] = useState(false)
 
   const dispatch = useDispatch()
-  const history = useHistory()
 
   const handleChange = e => {
     setNewSmurf({ ...newSmurf, [e.target.name]: e.target.value })
@@ -18,8 +18,9 @@ const AddForm = () => {
     e.preventDefault()
     dispatch(submitNewSmurf({ ...newSmurf }))
     setNewSmurf({ name: '', age: 0, height: '0cm' })
-    history.push('/')
+    setSubmitted(true)
   }
+
 
   return (
     <div>
@@ -41,6 +42,19 @@ const AddForm = () => {
         </label>
         <button onClick={handleSubmit}>Add!</button>
       </form>
+      <div>
+        {submitted ? <SubmitMessage /> : <div></div>}
+      </div>
+    </div>
+  )
+}
+
+const SubmitMessage = () => {
+
+  const error = useSelector(state => state.error)
+  return (
+    <div>
+      {error === '' ? <div>Success</div> : <div>{error}</div>}
     </div>
   )
 }

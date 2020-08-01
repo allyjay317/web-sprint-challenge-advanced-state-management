@@ -1,4 +1,4 @@
-import { START_GET_SMURFS, GET_SMURFS_SUCCESS } from "../actions"
+import { START_GET_SMURFS, GET_SMURFS_SUCCESS, GET_SMURFS_FAIL, SUBMIT_NEW_SMURF, SUBMIT_NEW_SMURF_SUCCESS, SUBMIT_NEW_SMURF_ERROR } from "../actions"
 
 const initialState = {
   isFetching: false,
@@ -18,6 +18,31 @@ export const SmurfReducer = (state = initialState, action) => {
         ...state,
         isFetching: false,
         smurfs: action.payload
+      }
+    case GET_SMURFS_FAIL:
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload
+      }
+    case SUBMIT_NEW_SMURF:
+      return {
+        ...state,
+        isFetching: true,
+      }
+    case SUBMIT_NEW_SMURF_SUCCESS:
+      return {
+        ...state,
+        smurfs: action.payload,
+        isFetching: false,
+        error: ''
+      }
+    case SUBMIT_NEW_SMURF_ERROR:
+      debugger
+      return {
+        ...state,
+        isFetching: false,
+        error: action.payload.Error
       }
     default:
       return state
