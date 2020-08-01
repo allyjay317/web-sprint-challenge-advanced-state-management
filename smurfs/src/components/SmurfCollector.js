@@ -1,9 +1,11 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import Smurf from "./Smurf";
+import { useHistory } from 'react-router';
 const SmurfCollector = () => {
   const smurfs = useSelector(state => state.smurfs)
   const isFetching = useSelector(state => state.isFetching)
+  const history = useHistory()
   return (
     <div>
       {isFetching ?
@@ -14,7 +16,7 @@ const SmurfCollector = () => {
         ) : (
           <div>
             {smurfs.map(smurf => (
-              <Smurf data={smurf} key={smurf.id} />
+              <div onClick={() => history.push(`/smurf/${smurf.id}`)}><Smurf data={smurf} key={smurf.id} /></div>
             ))}
           </div>
         )

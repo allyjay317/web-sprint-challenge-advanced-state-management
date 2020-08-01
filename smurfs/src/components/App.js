@@ -6,6 +6,7 @@ import { getSmurfs } from '../redux/actions'
 import SmurfCollector from "./SmurfCollector";
 import { Route, withRouter } from "react-router";
 import AddForm from "./AddForm";
+import SmurfPage from "./SmurfPage";
 class App extends Component {
 
   componentDidMount() {
@@ -34,6 +35,9 @@ class App extends Component {
           </Route>
           <Route path='/add'>
             <AddForm />
+          </Route>
+          <Route path='/smurf/:id'>
+            <SmurfPage />
           </Route>
         </div>
 

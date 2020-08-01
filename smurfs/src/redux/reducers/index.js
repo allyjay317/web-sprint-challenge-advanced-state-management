@@ -38,7 +38,6 @@ export const SmurfReducer = (state = initialState, action) => {
         error: ''
       }
     case SUBMIT_NEW_SMURF_ERROR:
-      debugger
       return {
         ...state,
         isFetching: false,
