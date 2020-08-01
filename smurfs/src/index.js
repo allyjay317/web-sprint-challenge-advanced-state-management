@@ -6,7 +6,8 @@ import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
 import thunk from 'redux-thunk'
 import { SmurfReducer } from './redux/reducers'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 const store = createStore(SmurfReducer, applyMiddleware(thunk))
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById("root"));
+ReactDOM.render(<Router><Provider store={store}><App /></Provider></Router>, document.getElementById("root"));

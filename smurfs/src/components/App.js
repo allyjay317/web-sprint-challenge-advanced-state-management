@@ -2,25 +2,40 @@ import React, { Component } from "react";
 import "./App.css";
 import { connect } from "react-redux";
 import { getSmurfs } from '../redux/actions'
+
+import SmurfCollector from "./SmurfCollector";
+import { Route, withRouter } from "react-router";
 class App extends Component {
 
   componentDidMount() {
+
     this.props.getSmurfs()
   }
 
   render() {
     return (
       <div className="App">
-        <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your state management version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
-        <div>Have fun!</div>
+        <nav style={{ width: '100%', backgroundColor: '#62cdfd', position: "fixed", top: 0, display: 'flex', justifyContent: 'space-evenly' }}>
+          <h1>
+            Smurfs!
+          </h1>
+          <button onClick={e => {
+            e.preventDefault()
+            this.props.history
+          }}>Add a Smurf</button>
+        </nav>
+        <Route exact path='/'>
+          <div style={{ marginTop: '100px' }}>
+            <SmurfCollector />
+          </div>
+        </Route>
+        <Route path='/add'>
+
+        </Route>
+
       </div>
     );
   }
 }
 
-
-
-
-export default connect(() => { }, { getSmurfs })(App);
+export default withRouter(App);
